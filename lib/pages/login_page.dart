@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_app/components/buttons.dart';
+import 'package:flutter_firebase_app/components/square_tile.dart';
 import 'package:flutter_firebase_app/components/textfield.dart';
 
 class LoginPage extends StatelessWidget {
@@ -80,9 +81,22 @@ class LoginPage extends StatelessWidget {
                   thickness: 0.5,
                   color: Colors.grey[400],
                 )
-              )
+              ),
             ],
           ),),
+
+          const SizedBox(height: 50),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SquareTile(imagePath: 'lib/images/google.png'),
+
+              const SizedBox(width: 10,),
+
+              SquareTile(imagePath: 'lib/images/apple.png'),
+            ],
+          )
         ]),
       ),
     );
