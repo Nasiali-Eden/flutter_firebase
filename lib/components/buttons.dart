@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SignInButton extends StatelessWidget {
+<<<<<<< HEAD
   final Function()? onTap;
 
   const SignInButton({
@@ -33,3 +34,20 @@ class SignInButton extends StatelessWidget {
     );
   }
 }
+=======
+  const SignInButton ({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(25),
+      margin: EdgeInsets.symmetric(horizontal: 25),
+      decoration: BoxDecoration(color: Colors.black),
+      child: const Center(
+        child: Text("Sign In",
+        style: TextStyle(color: Colors.white),),
+      ),
+    );
+  }
+}
+>>>>>>> 13bb9930ce2cdc0f6cce0f9950e1fe7647bceaa8
