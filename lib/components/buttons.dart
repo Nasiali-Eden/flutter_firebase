@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SignInButton extends StatelessWidget {
+
   final Function()? onTap;
 
   const SignInButton({
