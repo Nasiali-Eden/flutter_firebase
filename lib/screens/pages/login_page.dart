@@ -15,7 +15,9 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
 
   void signUserIn() {}
-  void signInAnon() {}
+
+  Future<void> signInAnon() async {
+  }
 
   @override
   Widget build(BuildContext context) {
