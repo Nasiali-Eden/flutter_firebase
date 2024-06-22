@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_firebase_app/components/buttons.dart';
 import 'package:flutter_firebase_app/components/square_tile.dart';
 import 'package:flutter_firebase_app/components/textfield.dart';
+import 'package:flutter_firebase_app/screens/services/auth.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -13,10 +14,18 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
+  final AuthService _auth = AuthService();
 
   void signUserIn() {}
 
   Future<void> signInAnon() async {
+    dynamic result = await _auth.signAnon();
+    if (result == null) {
+      print('error');
+    } else {
+      print('signed in');
+      print(result);
+    }
   }
 
   @override
@@ -26,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
-        title: Center(child: Text('Sign In')),
+        title: const Center(child: Text('Sign In')),
       ),
       body: SafeArea(
         child: Column(
@@ -86,9 +95,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Expanded(
                       child: Divider(
-                        thickness: 0.5,
-                        color: Colors.grey[400],
-                      )),
+                    thickness: 0.5,
+                    color: Colors.grey[400],
+                  )),
                 ],
               ),
             ),

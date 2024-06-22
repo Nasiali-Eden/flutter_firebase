@@ -13,7 +13,6 @@ Future signAnon() async {
   } catch(e) {
     print(e.toString());
     return null;
-
   }
 }
   // sign in with email and password
