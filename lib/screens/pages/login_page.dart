@@ -9,11 +9,13 @@ class LoginPage extends StatefulWidget {
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
+
 class _LoginPageState extends State<LoginPage> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
   void signUserIn() {}
+  void signInAnon() {}
 
   @override
   Widget build(BuildContext context) {
@@ -26,111 +28,98 @@ class _LoginPageState extends State<LoginPage> {
       ),
       body: SafeArea(
         child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-          const SizedBox(height: 30),
-          const Icon(
-            Icons.lock,
-            size: 90,
-          ),
-          const SizedBox(height: 30),
-          Text("Welcome Back",
-              style: TextStyle(
-                color: Colors.grey[700],
-                fontSize: 16,
-              )),
-          //Username Textfield
-          const SizedBox(height: 20),
-          MyTextField(
-            obscureText: false,
-            controller: usernameController,
-            hintText: 'Username',
-          ),
-
-          const SizedBox(height: 10),
-          MyTextField(
-            obscureText: true,
-            controller: passwordController,
-            hintText: 'Password',
-          ),
-
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 10),
+            const Icon(
+              Icons.lock,
+              size: 90,
+            ),
+            const SizedBox(height: 0),
+            SignInAnon(onPressed: signInAnon),
+            const SizedBox(height: 1),
+            MyTextField(
+              obscureText: false,
+              controller: usernameController,
+              hintText: 'Username',
+            ),
+            const SizedBox(height: 10),
+            MyTextField(
+              obscureText: true,
+              controller: passwordController,
+              hintText: 'Password',
+            ),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    'Forgot Password',
+                    style: TextStyle(color: Colors.grey[600]),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            SignInButton(onTap: signUserIn),
+            const SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Divider(
+                      thickness: 0.5,
+                      color: Colors.grey[400],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Text(
+                      'Or Continue With',
+                      style: TextStyle(color: Colors.grey[700]),
+                    ),
+                  ),
+                  Expanded(
+                      child: Divider(
+                        thickness: 0.5,
+                        color: Colors.grey[400],
+                      )),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SquareTile(imagePath: 'lib/images/google.png'),
+                SizedBox(
+                  width: 10,
+                ),
+                SquareTile(imagePath: 'lib/images/apple.png'),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'ForgotPassword',
-                  style: TextStyle(color: Colors.grey[600]),
+                  'Not a Member?',
+                  style: TextStyle(color: Colors.grey[700]),
+                ),
+                const SizedBox(width: 4),
+                const Text(
+                  'Register Now',
+                  style: TextStyle(
+                      color: Colors.blueAccent, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
-          ),
-          const SizedBox(height: 20),
-
-          SignInButton(onTap: signUserIn),
-
-          const SizedBox(height: 30),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Divider(
-                    thickness: 0.5,
-                    color: Colors.grey[400],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Text(
-                    'Or Continue With?',
-                    style: TextStyle(color: Colors.grey[700]),
-                  ),
-                ),
-                Expanded(
-                    child: Divider(
-                  thickness: 0.5,
-                  color: Colors.grey[400],
-                )),
-              ],
-            ),
-          ),
-
-          const SizedBox(height: 20),
-
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SquareTile(imagePath: 'lib/images/google.png'),
-              SizedBox(
-                width: 10,
-              ),
-              SquareTile(imagePath: 'lib/images/apple.png'),
-            ],
-          ),
-
-          const SizedBox(height: 30),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Not a Member?',
-                style: TextStyle(color: Colors.grey[700]),
-              ),
-              const SizedBox(width: 4),
-              const Text(
-                'Register Now',
-                style: TextStyle(
-                    color: Colors.blueAccent, fontWeight: FontWeight.bold),
-              ),
-            ],
-          )
-        ]),
+          ],
+        ),
       ),
     );
   }
 }
-

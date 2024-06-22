@@ -34,3 +34,37 @@ class SignInButton extends StatelessWidget {
     );
   }
 }
+
+class SignInAnon extends StatelessWidget {
+  final Function()? onPressed;
+
+  const SignInAnon({
+    super.key,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      margin: const EdgeInsets.symmetric(horizontal: 25),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.black, // Background color
+          padding: const EdgeInsets.all(20), // Button padding
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8), // Rounded corners
+          ),
+        ),
+        onPressed: onPressed,
+        child: const Text(
+          'Anonymous',
+          style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 16),
+        ),
+      ),
+    );
+  }
+}
