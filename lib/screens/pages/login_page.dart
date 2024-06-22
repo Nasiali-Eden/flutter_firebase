@@ -3,9 +3,13 @@ import 'package:flutter_firebase_app/components/buttons.dart';
 import 'package:flutter_firebase_app/components/square_tile.dart';
 import 'package:flutter_firebase_app/components/textfield.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+class _LoginPageState extends State<LoginPage> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -15,6 +19,11 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[300],
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+        title: Center(child: Text('Sign In')),
+      ),
       body: SafeArea(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -124,3 +133,4 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
+
