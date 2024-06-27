@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_app/screens/services/auth.dart';
 import 'package:flutter_firebase_app/screens/wrapper.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-
+import 'package:provider/provider.dart';
 
 
 void main() async {
@@ -18,9 +19,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: wrapper(),
+    return StreamProvider.value(
+      value: AuthService().user,
+      initialData: null,
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: wrapper(),
+      ),
     );
   }
 }
