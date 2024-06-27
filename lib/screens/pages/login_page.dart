@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
       print('error');
     } else {
       print('signed in');
-      print(result);
+      print("user "+ result.uid);
     }
   }
 
