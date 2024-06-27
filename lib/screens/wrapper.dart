@@ -11,7 +11,7 @@ class wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final user = Provider.of<F_User>(context);
+    final user = Provider.of<F_User?>(context);
     print(user);
     return const Authenticate();
   }
