@@ -4,12 +4,17 @@ import 'package:flutter_firebase_app/models/user.dart';
 class AuthService{
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-// create user object based on firebaseUser
 
+  // create user object based on firebaseUser
   F_User? _userFromFirebaseUser(User? user){
     return user != null ? F_User(uid: user.uid) : null;
   }
 
+  // create user obj based on Firebase User
+  Stream<F_User?> get user{
+    return _auth.authStateChanges()
+        .map((User? user) => _userFromFirebaseUser(user));
+  }
   // sign in anonymously
 Future signAnon() async {
   try {
