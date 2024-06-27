@@ -4,6 +4,7 @@ import 'package:flutter_firebase_app/screens/wrapper.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_firebase_app/models/user.dart';
 
 
 void main() async {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider.value(
+    return StreamProvider<F_User?>.value(
       value: AuthService().user,
       initialData: null,
       child: const MaterialApp(
