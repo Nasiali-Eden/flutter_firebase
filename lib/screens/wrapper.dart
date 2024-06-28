@@ -11,14 +11,12 @@ class wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<F_User?>(context);
-    print(user);
-
     //return home/authenticate
 
     if (user == null) {
       return const Authenticate();
     } else {
-      return Home();
+      return  Home();
     }
   }
 }
