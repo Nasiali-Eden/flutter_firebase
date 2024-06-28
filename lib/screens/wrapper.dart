@@ -10,9 +10,15 @@ class wrapper extends StatelessWidget {
   // return home or authenticate
   @override
   Widget build(BuildContext context) {
-
     final user = Provider.of<F_User?>(context);
     print(user);
-    return const Authenticate();
+
+    //return home/authenticate
+
+    if (user == null) {
+      return const Authenticate();
+    } else {
+      return Home();
+    }
   }
 }
