@@ -16,7 +16,10 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
   final AuthService _auth = AuthService();
 
-  void signUserIn() {}
+  void signUserIn() async{
+    print(email);
+    print(password);
+  }
 
   String email = '';
   String password = '';
