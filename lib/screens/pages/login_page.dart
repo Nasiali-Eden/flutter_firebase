@@ -50,20 +50,17 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 0),
               SignInAnon(onPressed: signInAnon),
               const SizedBox(height: 1),
-              TextFormField(
+              MyTextField(
                 obscureText: false,
                 controller: usernameController,
-                decoration: (
-                InputDecoration(labelText: 'Enter Your Email')
-                ),
-                onChanged: (val){},
+                hintText: 'Enter Your Email',
               ),
               const SizedBox(height: 10),
-              TextFormField(
+              MyTextField(
                 obscureText: true,
                 controller: passwordController,
-                decoration: (InputDecoration(labelText: 'Password')),
-                onChanged: (val){},
+                hintText: 'Password',
+
               ),
               const SizedBox(height: 10),
               Padding(
