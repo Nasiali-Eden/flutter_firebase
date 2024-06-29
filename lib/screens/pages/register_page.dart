@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../../components/buttons.dart';
 import '../../components/square_tile.dart';
 import '../../components/textfield.dart';
+import '../services/auth.dart';
 
     class RegisterPage extends StatefulWidget {
       const RegisterPage({super.key});
@@ -15,11 +15,15 @@ import '../../components/textfield.dart';
 
       final usernameController = TextEditingController();
       final passwordController = TextEditingController();
+      final AuthService _auth = AuthService();
 
       String email = '';
       String password = '';
 
-      void SignUp(){}
+      void SignUp(){
+        print(email);
+        print(password);
+      }
 
       void _onEmailChanged(String value) {
         setState(() {
@@ -39,7 +43,7 @@ import '../../components/textfield.dart';
           appBar: AppBar(
             backgroundColor: Colors.white,
             elevation: 0.0,
-            title: const Center(child: Text('Sign In')),
+            title: const Center(child: Text('Sign Up')),
           ),
           body: Form(
             child: SafeArea(
@@ -122,12 +126,12 @@ import '../../components/textfield.dart';
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Not a Member?',
+                        'Already Have an Account?',
                         style: TextStyle(color: Colors.grey[700]),
                       ),
                       const SizedBox(width: 4),
                       const Text(
-                        'Register Now',
+                        'Sign In',
                         style: TextStyle(
                             color: Colors.blueAccent, fontWeight: FontWeight.bold),
                       ),
