@@ -18,6 +18,21 @@ class _LoginPageState extends State<LoginPage> {
 
   void signUserIn() {}
 
+  String email = '';
+  String password = '';
+
+  void _onEmailChanged(String value) {
+    setState(() {
+      email = value;
+    });
+  }
+
+  void _onPasswordChanged(String value) {
+    setState(() {
+      password = value;
+    });
+  }
+
   Future<void> signInAnon() async {
     dynamic result = await _auth.signAnon();
     if (result == null) {
@@ -54,13 +69,14 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: false,
                 controller: usernameController,
                 hintText: 'Enter Your Email',
+                onChanged: _onEmailChanged,
               ),
               const SizedBox(height: 10),
               MyTextField(
                 obscureText: true,
                 controller: passwordController,
                 hintText: 'Password',
-
+                onChanged: _onPasswordChanged,
               ),
               const SizedBox(height: 10),
               Padding(
