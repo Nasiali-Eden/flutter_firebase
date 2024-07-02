@@ -43,7 +43,17 @@ import '../services/auth.dart';
           appBar: AppBar(
             backgroundColor: Colors.white,
             elevation: 0.0,
-            title: const Center(child: Text('Sign Up')),
+            title: const Center(child: Text('Sign Up')
+            ),
+            actions: [
+              TextButton.icon(
+                icon: Icon(Icons.person),
+                label: Text("Sign In"),
+                onPressed: () {
+
+                },
+              ),
+            ],
           ),
           body: Form(
             child: SafeArea(
