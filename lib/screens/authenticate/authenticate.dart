@@ -10,10 +10,20 @@ class Authenticate extends StatefulWidget {
 }
 
 class _AuthenticateState extends State<Authenticate> {
+
+  bool showLoginPage = true;
+  void toggleView(){
+    set
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const RegisterPage(),
-    );
+
+   if (showLoginPage) {
+     return LoginPage();
+   }
+   else{
+     return RegisterPage();
+   }
   }
 }
