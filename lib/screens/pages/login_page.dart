@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
   final AuthService _auth = AuthService();
 
-  void signUserIn() async{
+  void signUserIn() async {
     print(email);
     print(password);
   }
@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
       print('error');
     } else {
       print('signed in');
-      print("user "+ result.uid);
+      print("user " + result.uid);
     }
   }
 
@@ -53,7 +53,18 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
-        title: const Center(child: Text('Sign In')),
+        title: Center(
+          child: Text('Sign In'),
+        ),
+        actions: [
+          TextButton.icon(
+            icon: Icon(Icons.person),
+            label: Text("Register"),
+            onPressed: () {
+
+            },
+          ),
+        ],
       ),
       body: Form(
         child: SafeArea(
