@@ -3,6 +3,8 @@ import 'package:flutter_firebase_app/screens/pages/login_page.dart';
 import 'package:flutter_firebase_app/screens/pages/register_page.dart';
 
 class Authenticate extends StatefulWidget {
+
+
   const Authenticate({super.key});
 
   @override
@@ -12,18 +14,19 @@ class Authenticate extends StatefulWidget {
 class _AuthenticateState extends State<Authenticate> {
 
   bool showLoginPage = true;
+
   void toggleView(){
-    set
+    setState(() => showLoginPage = !showLoginPage);
   }
 
   @override
   Widget build(BuildContext context) {
 
    if (showLoginPage) {
-     return LoginPage();
+     return LoginPage(toggleView: toggleView);
    }
    else{
-     return RegisterPage();
+     return RegisterPage(toggleView: toggleView);
    }
   }
 }

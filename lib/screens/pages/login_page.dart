@@ -5,7 +5,8 @@ import 'package:flutter_firebase_app/components/textfield.dart';
 import 'package:flutter_firebase_app/screens/services/auth.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  final Function toggleView;
+  LoginPage({Key? key, required this.toggleView}) : super(key:key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();

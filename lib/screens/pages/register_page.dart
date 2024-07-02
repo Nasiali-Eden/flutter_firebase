@@ -5,7 +5,8 @@ import '../../components/textfield.dart';
 import '../services/auth.dart';
 
     class RegisterPage extends StatefulWidget {
-      const RegisterPage({super.key});
+      final Function toggleView;
+      RegisterPage({Key? key,required this.toggleView}) : super(key:key);
 
       @override
       State<RegisterPage> createState() => _RegisterPageState();
