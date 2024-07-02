@@ -51,7 +51,7 @@ import '../services/auth.dart';
                 icon: Icon(Icons.person),
                 label: Text("Sign In"),
                 onPressed: () {
-
+                  widget.toggleView();
                 },
               ),
             ],
