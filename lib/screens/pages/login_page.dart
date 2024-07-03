@@ -6,7 +6,7 @@ import 'package:flutter_firebase_app/screens/services/auth.dart';
 
 class LoginPage extends StatefulWidget {
   final Function toggleView;
-  LoginPage({Key? key, required this.toggleView}) : super(key:key);
+  LoginPage({Key? key, required this.toggleView}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
             icon: Icon(Icons.person, color: Colors.grey[500],),
             label: Text("Register"),
             onPressed: () {
-               widget.toggleView();
+              widget.toggleView();
             },
           ),
         ],
@@ -128,9 +128,9 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Expanded(
                         child: Divider(
-                      thickness: 0.5,
-                      color: Colors.grey[400],
-                    )),
+                          thickness: 0.5,
+                          color: Colors.grey[400],
+                        )),
                   ],
                 ),
               ),
@@ -168,3 +168,4 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+
