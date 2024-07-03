@@ -14,6 +14,8 @@ import '../services/auth.dart';
 
     class _RegisterPageState extends State<RegisterPage> {
 
+      final _formKey = GlobalKey<FormState>();
+
       final usernameController = TextEditingController();
       final passwordController = TextEditingController();
       final AuthService _auth = AuthService();
@@ -21,9 +23,10 @@ import '../services/auth.dart';
       String email = '';
       String password = '';
 
-      void SignUp(){
+      void SignUp () async {if (_formKey.currentState!.validate()){
         print(email);
         print(password);
+        }
       }
 
       void _onEmailChanged(String value) {
@@ -57,6 +60,7 @@ import '../services/auth.dart';
             ],
           ),
           body: Form(
+            key: _formKey,
             child: SafeArea(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -94,7 +98,9 @@ import '../services/auth.dart';
                     ),
                   ),
                   const SizedBox(height: 10),
+
                   SignUpButton(onPressed: SignUp),
+
                   const SizedBox(height: 15),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
