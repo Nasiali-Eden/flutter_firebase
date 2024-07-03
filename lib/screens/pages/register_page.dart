@@ -48,7 +48,7 @@ import '../services/auth.dart';
             ),
             actions: [
               TextButton.icon(
-                icon: Icon(Icons.person),
+                icon: Icon(Icons.person, color: Colors.grey[500],),
                 label: Text("Sign In"),
                 onPressed: () {
                   widget.toggleView();

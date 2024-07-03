@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         actions: [
           TextButton.icon(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.person, color: Colors.grey[500],),
             label: Text("Register"),
             onPressed: () {
                widget.toggleView();
