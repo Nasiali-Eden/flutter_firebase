@@ -6,7 +6,7 @@ import '../services/auth.dart';
 
     class RegisterPage extends StatefulWidget {
       final Function toggleView;
-      RegisterPage({Key? key,required this.toggleView}) : super(key:key);
+      const RegisterPage({super.key,required this.toggleView});
 
       @override
       State<RegisterPage> createState() => _RegisterPageState();
