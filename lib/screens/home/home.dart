@@ -11,11 +11,11 @@ class Home extends StatelessWidget {
       backgroundColor: Colors.grey[400],
       appBar: AppBar(
         title: Text('Brewer'),
-        backgroundColor: Colors.brown[500],
+        backgroundColor: Colors.grey[100],
         elevation: 0.0,
         actions: [
           TextButton.icon(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.person, color: Colors.grey[500],),
             onPressed: () async{
               await _auth.signOut();
             },
