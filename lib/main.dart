@@ -8,30 +8,27 @@ import 'package:flutter_firebase_app/models/user.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  bool firebaseInitialized = false;
   try {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    firebaseInitialized = true;
   } catch (e) {
     print("No internet connection: $e");
   }
-  runApp(MyApp(firebaseInitialized: firebaseInitialized));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final bool firebaseInitialized;
-  const MyApp({super.key, required this.firebaseInitialized});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return StreamProvider<F_User?>.value(
-      value: firebaseInitialized ? AuthService().user : Stream<F_User?>.empty(),
+      value: AuthService().user,
       initialData: null,
-      child: MaterialApp(
+      child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Wrapper(firebaseInitialized: firebaseInitialized),
+        home: Wrapper(),
       ),
     );
   }
