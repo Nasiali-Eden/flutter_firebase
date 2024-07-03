@@ -3,8 +3,6 @@ import 'package:flutter_firebase_app/screens/pages/login_page.dart';
 import 'package:flutter_firebase_app/screens/pages/register_page.dart';
 
 class Authenticate extends StatefulWidget {
-
-
   const Authenticate({super.key});
 
   @override
