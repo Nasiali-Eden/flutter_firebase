@@ -6,20 +6,25 @@ import 'package:flutter_firebase_app/screens/services/auth.dart';
 
 class LoginPage extends StatefulWidget {
   final Function toggleView;
-  LoginPage({Key? key, required this.toggleView}) : super(key: key);
+  const LoginPage({super.key, required this.toggleView});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final AuthService _auth = AuthService();
 
-  void signUserIn() async {
-    print(email);
-    print(password);
+  void signUserIn() {
+    if (_formKey.currentState!.validate()) {
+      // Validation succeeded, perform actions
+      print('Email: $email');
+      print('Password: $password');
+      // Call your authentication service or any other logic here
+    }
   }
 
   String email = '';
@@ -54,20 +59,21 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
-        title: Center(
+        title: const Center(
           child: Text('Sign In'),
         ),
         actions: [
           TextButton.icon(
             icon: Icon(Icons.person, color: Colors.grey[500],),
-            label: Text("Register"),
+            label: const Text("Register"),
             onPressed: () {
-              widget.toggleView();
+               widget.toggleView();
             },
           ),
         ],
       ),
       body: Form(
+        key: _formKey,
         child: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -81,6 +87,8 @@ class _LoginPageState extends State<LoginPage> {
               SignInAnon(onPressed: signInAnon),
               const SizedBox(height: 1),
               MyTextField(
+                validator: (value) =>
+                value!.isEmpty ? 'Enter an email' : null,
                 obscureText: false,
                 controller: usernameController,
                 hintText: 'Enter Your Email',
@@ -88,6 +96,8 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 10),
               MyTextField(
+                validator: (value) =>
+                value!.length < 6 ? 'Enter a password 6+ characters long' : null,
                 obscureText: true,
                 controller: passwordController,
                 hintText: 'Password',
@@ -130,9 +140,9 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Expanded(
                         child: Divider(
-                          thickness: 0.5,
-                          color: Colors.grey[400],
-                        )),
+                      thickness: 0.5,
+                      color: Colors.grey[400],
+                    )),
                   ],
                 ),
               ),
@@ -170,4 +180,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-

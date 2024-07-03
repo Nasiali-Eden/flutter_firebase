@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-class MyTextField extends StatelessWidget{
-  final controller;
+class MyTextField extends StatelessWidget {
+  final TextEditingController controller;
+  final String? Function(String?)? validator;
   final String hintText;
   final bool obscureText;
   final Function(String) onChanged;
@@ -9,33 +10,34 @@ class MyTextField extends StatelessWidget{
   const MyTextField({
     super.key,
     required this.controller,
+    required this.validator,
     required this.hintText,
     required this.obscureText,
     required this.onChanged,
   });
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-        child: TextFormField(
-          controller: controller,
-          obscureText: obscureText,
-          decoration: InputDecoration(
-            enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.white),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey.shade400),
-            ),
-            fillColor: Colors.grey.shade200,
-            filled: true,
-            hintText: hintText,
-            hintStyle: TextStyle(color: Colors.grey[500]),
+      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+      child: TextFormField(
+        controller: controller,
+        obscureText: obscureText,
+        decoration: InputDecoration(
+          enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white),
           ),
-          onChanged: onChanged,
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey.shade400),
+          ),
+          fillColor: Colors.grey.shade200,
+          filled: true,
+          hintText: hintText,
+          hintStyle: TextStyle(color: Colors.grey[500]),
         ),
+        validator: validator, // Pass the validator function here
+        onChanged: onChanged,
+      ),
     );
-
   }
 }
