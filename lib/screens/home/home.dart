@@ -13,7 +13,7 @@ class Home extends StatelessWidget {
         title: Text('Brewer'),
         backgroundColor: Colors.brown[500],
         elevation: 0.0,
-        actions: <Widget>[
+        actions: [
           TextButton.icon(
             icon: Icon(Icons.person),
             onPressed: () async{
