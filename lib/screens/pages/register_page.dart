@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_app/components/buttons.dart';
 import 'package:flutter_firebase_app/screens/services/auth.dart';
+import '../../components/square_tile.dart';
 import '../../components/textfield.dart';
-import 'package:flutter_firebase_app/screens/services/auth.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function toggleView;
@@ -111,10 +112,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               const SizedBox(height: 10),
 
-              ElevatedButton(
-                onPressed: SignUp,
-                child: const Text('Sign Up'),
-              ),
+              SignUpButton(onPressed: SignUp),
 
               const SizedBox(height: 15),
               Padding(
@@ -147,8 +145,11 @@ class _RegisterPageState extends State<RegisterPage> {
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Replace with your social login widgets
-                  Text('Social Login Buttons Here'),
+                  SquareTile(imagePath: 'lib/images/google.png'),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  SquareTile(imagePath: 'lib/images/apple.png'),
                 ],
               ),
               const SizedBox(height: 10),
