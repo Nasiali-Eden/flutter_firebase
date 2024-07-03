@@ -1,5 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../../components/textfield.dart'; // Adjust the import path as needed
+import 'package:flutter_firebase_app/screens/services/auth.dart';
+import '../../components/textfield.dart';
+import 'package:flutter_firebase_app/screens/services/auth.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function toggleView;
@@ -15,18 +18,22 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
+  final AuthService _auth = AuthService();
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
   String email = '';
   String password = '';
+  String error = '';
 
-  void SignUp() {
+  void SignUp() async {
     if (_formKey.currentState!.validate()) {
-      // Validation succeeded, perform actions
-      print('Email: $email');
-      print('Password: $password');
-      // Call your authentication service or any other logic here
+        dynamic result = await _auth.registerWithEmailAndPassword(email, password);
+      if(result == null){
+        setState(() {
+          error = 'please supply a valid email';
+        });
+      }
     }
   }
 
@@ -88,6 +95,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 },
               ),
               const SizedBox(height: 10),
+
+              Text(error, style: TextStyle(color: Colors.deepOrange,fontSize: 14.0),),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
