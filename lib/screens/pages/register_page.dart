@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_app/Loading/load.dart';
 import 'package:flutter_firebase_app/components/buttons.dart';
 import 'package:flutter_firebase_app/screens/services/auth.dart';
 import '../../components/square_tile.dart';
@@ -22,6 +23,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final AuthService _auth = AuthService();
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
+  bool loading = false;
 
   String email = '';
   String password = '';
@@ -29,10 +31,14 @@ class _RegisterPageState extends State<RegisterPage> {
 
   void SignUp() async {
     if (_formKey.currentState!.validate()) {
+      setState(() {
+        loading = true;
+      });
         dynamic result = await _auth.registerWithEmailAndPassword(email, password);
       if(result == null){
         setState(() {
           error = 'please supply a valid email';
+          loading = false;
         });
       }
     }
@@ -40,7 +46,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Load() : Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         backgroundColor: Colors.white,
