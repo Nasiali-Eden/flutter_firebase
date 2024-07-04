@@ -96,7 +96,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 },
               ),
               const SizedBox(height: 10),
-
               Text(error, style: TextStyle(color: Colors.deepOrange,fontSize: 14.0),),
               Padding(
                 padding: const EdgeInsets.all(8.0),

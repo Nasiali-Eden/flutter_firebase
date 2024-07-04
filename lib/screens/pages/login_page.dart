@@ -18,15 +18,17 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
   final AuthService _auth = AuthService();
 
-  void signUserIn() {
+  void signUserIn() async {
     if (_formKey.currentState!.validate()) {
-      // Validation succeeded, perform actions
-      print('Email: $email');
-      print('Password: $password');
-      // Call your authentication service or any other logic here
+
+      // if(result == null){
+      //   setState(() {
+      //     error = 'please supply a valid email';
+      //   });
+      // }
     }
   }
-
+  String error = '';
   String email = '';
   String password = '';
 
@@ -120,6 +122,7 @@ class _LoginPageState extends State<LoginPage> {
 
               SignInButton(onPressed: signUserIn),
 
+              Text(error, style: TextStyle(color: Colors.deepOrange,fontSize: 14.0),),
               const SizedBox(height: 15),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
