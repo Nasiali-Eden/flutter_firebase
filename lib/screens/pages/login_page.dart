@@ -20,12 +20,12 @@ class _LoginPageState extends State<LoginPage> {
 
   void signUserIn() async {
     if (_formKey.currentState!.validate()) {
-
-      // if(result == null){
-      //   setState(() {
-      //     error = 'please supply a valid email';
-      //   });
-      // }
+      dynamic result = await _auth.signInWithEmailAndPassword(email, password);
+      if(result == null){
+        setState(() {
+          error = 'Could not Sign In with those Credentials';
+        });
+      }
     }
   }
   String error = '';
