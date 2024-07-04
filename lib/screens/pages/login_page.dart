@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_app/Loading/load.dart';
 import 'package:flutter_firebase_app/components/buttons.dart';
 import 'package:flutter_firebase_app/components/square_tile.dart';
 import 'package:flutter_firebase_app/components/textfield.dart';
@@ -18,12 +19,18 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
   final AuthService _auth = AuthService();
 
+  bool loading = false;
+
   void signUserIn() async {
     if (_formKey.currentState!.validate()) {
+      setState(() {
+     loading = true;
+      });
       dynamic result = await _auth.signInWithEmailAndPassword(email, password);
       if(result == null){
         setState(() {
           error = 'Could not Sign In with those Credentials';
+          loading = false;
         });
       }
     }
@@ -56,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Load() : Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         backgroundColor: Colors.white,
