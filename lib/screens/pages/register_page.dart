@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_app/Loading/load.dart';
 import 'package:flutter_firebase_app/components/buttons.dart';
@@ -46,7 +45,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    return loading ? Load() : Scaffold(
+    return loading ? const Load() : Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -102,7 +101,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 },
               ),
               const SizedBox(height: 10),
-              Text(error, style: TextStyle(color: Colors.deepOrange,fontSize: 14.0),),
+              Text(error, style: const TextStyle(color: Colors.deepOrange,fontSize: 14.0),),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(

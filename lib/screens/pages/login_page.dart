@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return loading ? Load() : Scaffold(
+    return loading ? const Load() : Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -129,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
 
               SignInButton(onPressed: signUserIn),
 
-              Text(error, style: TextStyle(color: Colors.deepOrange,fontSize: 14.0),),
+              Text(error, style: const TextStyle(color: Colors.deepOrange,fontSize: 14.0),),
               const SizedBox(height: 15),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
