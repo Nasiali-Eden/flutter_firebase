@@ -8,7 +8,7 @@ import '../../components/textfield.dart';
 class RegisterPage extends StatefulWidget {
   final Function toggleView;
 
-  RegisterPage({
+  const RegisterPage({
     super.key,
     required this.toggleView,
   });
