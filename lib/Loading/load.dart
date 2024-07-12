@@ -10,8 +10,8 @@ class Load extends StatelessWidget {
       color: Colors.grey[900],
       child: const Center(
         child: SpinKitFadingCircle(
-          color: Colors.blueAccent,
-          size: 50.0,
+          color: Colors.lightBlue,
+          size: 49.0,
         ),
       ),
     );
