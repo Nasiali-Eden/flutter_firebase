@@ -13,4 +13,9 @@ Future updateUserData(String sugars, String name, int strength) async {
     'strength' : strength,
   });
 }
+
+// get brews stream
+Stream<QuerySnapshot> get brews{
+  return brewCollection.snapshots();
+}
 } 
