@@ -5,6 +5,7 @@ import 'package:flutter_firebase_app/screens/services/database.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/user.dart';
+import 'brew_list.dart';
 
 class Home extends StatelessWidget {
    Home({super.key});
@@ -34,6 +35,7 @@ class Home extends StatelessWidget {
             )
           ],
         ),
+        body: BrewList(),
       ),
     );
   }
