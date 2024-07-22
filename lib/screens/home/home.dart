@@ -3,16 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_firebase_app/screens/services/auth.dart';
 import 'package:flutter_firebase_app/screens/services/database.dart';
 import 'package:provider/provider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../../models/user.dart';
 
 class Home extends StatelessWidget {
    Home({super.key});
 
   final AuthService _auth = AuthService();
   @override
+
   Widget build(BuildContext context) {
-    return StreamProvider<QuerySnapshot>.value(
-      value: DatabaseService().brews,
+    final user = Provider.of<F_User?>(context);
+    return StreamProvider<QuerySnapshot?>.value(
+      value: DatabaseService(uid: user?.uid??'').brews,
+      initialData: null,
 
       child: Scaffold(
         backgroundColor: Colors.grey[400],

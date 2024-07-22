@@ -1,5 +1,5 @@
 # flutter_firebase_app
 
-Basic firebase application
+Simple Application with firebase and firestore database
 
 
