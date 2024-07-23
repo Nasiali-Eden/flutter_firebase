@@ -16,7 +16,7 @@ Future updateUserData(String sugars, String name, int strength) async {
 }
 
 //brew list from a snapshot
-  List<Brew>? _brewListFromSnapshot(QuerySnapshot snapshot) {
+  List<Brew> _brewListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
       var data = doc.data() as Map<String, dynamic>?; // Add null check and cast
       if (data == null) {
@@ -32,7 +32,7 @@ Future updateUserData(String sugars, String name, int strength) async {
 
 
 // get brews stream
-Stream<QuerySnapshot> get brews{
-  return brewCollection.snapshots();
+Stream<List<Brew>> get brews{
+  return brewCollection.snapshots().map(_brewListFromSnapshot);
 }
 } 
