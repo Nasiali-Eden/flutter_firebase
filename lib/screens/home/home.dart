@@ -35,7 +35,7 @@ class Home extends StatelessWidget {
             )
           ],
         ),
-        body: BrewList(),
+        body: const BrewList(),
       ),
     );
   }
