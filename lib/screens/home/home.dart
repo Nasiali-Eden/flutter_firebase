@@ -18,7 +18,7 @@ class Home extends StatelessWidget {
     final user = Provider.of<F_User?>(context);
     return StreamProvider<List<Brew>>.value(
       value: DatabaseService(uid: user?.uid??'').brews,
-      initialData: [],
+      initialData: const [],
 
       child: Scaffold(
         backgroundColor: Colors.grey[400],
