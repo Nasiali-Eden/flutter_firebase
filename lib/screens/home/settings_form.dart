@@ -41,8 +41,16 @@ class _SettingsFormState extends State<SettingsForm> {
           ),
 
           SizedBox(height: 20.0),
-
-
+          
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.pink[400],
+              ),
+              onPressed: () async {},
+              child: Text(
+                'Update',
+                style: TextStyle(color: Colors.white),
+              ))
         ],
       ),
     );
