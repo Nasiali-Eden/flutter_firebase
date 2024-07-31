@@ -48,7 +48,7 @@ class _SettingsFormState extends State<SettingsForm> {
                 borderSide: BorderSide(color: Colors.grey.shade400),
               ),
             ),
-            value: _currentSugars ?? '0',
+            value: _currentSugars ?? "0",
             items: sugars.map((sugar) {
               return DropdownMenuItem(
                   value: sugar, child: Text('$sugar sugars'));
@@ -57,6 +57,19 @@ class _SettingsFormState extends State<SettingsForm> {
               _currentSugars = val!;
             }),
           ),
+
+          //slider for strength
+          Slider(
+            value: (_currentStrength ?? 100).toDouble(),
+            min: 100,
+            max: 900,
+            divisions: 8,
+            onChanged: (val) => setState(() {
+              _currentStrength = val.round();
+            }),
+          ),
+
+
           ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.pink[400],
