@@ -17,11 +17,11 @@ class Home extends StatelessWidget {
 
   Widget build(BuildContext context) {
 
-    void _showSettingsPanel(){
+    void showSettingsPanel(){
       showModalBottomSheet(context: context, builder: (context){
           return Container(
-            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-            child: SettingsForm(),
+            padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
+            child: const SettingsForm(),
           );
       });
     }
@@ -46,9 +46,9 @@ class Home extends StatelessWidget {
               label: const Text('logout'),
             ),
             TextButton.icon(
-              icon: Icon(Icons.settings),
-              label: Text("Settings"),
-              onPressed: () => _showSettingsPanel(),
+              icon: const Icon(Icons.settings),
+              label: const Text("Settings"),
+              onPressed: () => showSettingsPanel(),
             )
           ],
         ),

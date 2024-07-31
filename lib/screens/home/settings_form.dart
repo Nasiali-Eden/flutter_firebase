@@ -14,9 +14,9 @@ class _SettingsFormState extends State<SettingsForm> {
   final textController = TextEditingController();
   final passwordController = TextEditingController();
 
-  late String _currentName;
-  late String _currentSugars;
-  late int _currentStrength;
+  String? _currentName; // Make nullable
+  String? _currentSugars; // Make nullable
+  int _currentStrength = 100; // Initialize with a default value
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +24,11 @@ class _SettingsFormState extends State<SettingsForm> {
       key: _formKey,
       child: Column(
         children: [
-          Text(
+          const Text(
             'Update your Brew Settings',
             style: TextStyle(fontSize: 18.0),
           ),
-          SizedBox(height: 20.0),
+          const SizedBox(height: 20.0),
           MyTextField(
             validator: (val) => val!.isEmpty ? "Please Enter a Name" : null,
             onChanged: (val) => setState(() {
@@ -38,8 +38,8 @@ class _SettingsFormState extends State<SettingsForm> {
             hintText: 'Enter your Name',
             obscureText: false,
           ),
-          SizedBox(height: 20.0),
-          DropdownButtonFormField(
+          const SizedBox(height: 20.0),
+          DropdownButtonFormField<String>(
             decoration: InputDecoration(
               enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.white),
@@ -48,7 +48,7 @@ class _SettingsFormState extends State<SettingsForm> {
                 borderSide: BorderSide(color: Colors.grey.shade400),
               ),
             ),
-            value: _currentSugars ?? "0",
+            value: _currentSugars ?? sugars[0], // Default to the first item
             items: sugars.map((sugar) {
               return DropdownMenuItem(
                   value: sugar, child: Text('$sugar sugars'));
@@ -58,9 +58,11 @@ class _SettingsFormState extends State<SettingsForm> {
             }),
           ),
 
-          //slider for strength
+          // Slider for strength
           Slider(
-            value: (_currentStrength ?? 100).toDouble(),
+            value: _currentStrength.toDouble(),
+            activeColor: Colors.brown[_currentStrength], // Use integer division
+            inactiveColor: Colors.brown[_currentStrength],
             min: 100,
             max: 900,
             divisions: 8,
@@ -69,16 +71,23 @@ class _SettingsFormState extends State<SettingsForm> {
             }),
           ),
 
-
           ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.pink[400],
-              ),
-              onPressed: () async {},
-              child: Text(
-                'Update',
-                style: TextStyle(color: Colors.white),
-              ))
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.pink[400],
+            ),
+            onPressed: () async {
+              if (_formKey.currentState!.validate()) {
+                // Handle form submission logic here
+                print('Name: $_currentName');
+                print('Sugars: $_currentSugars');
+                print('Strength: $_currentStrength');
+              }
+            },
+            child: const Text(
+              'Update',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
         ],
       ),
     );
