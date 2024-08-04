@@ -5,7 +5,6 @@ import 'package:flutter_firebase_app/models/user.dart';
 import 'package:flutter_firebase_app/screens/services/database.dart';
 import 'package:provider/provider.dart';
 
-
 class SettingsForm extends StatefulWidget {
   const SettingsForm({super.key});
 
@@ -17,21 +16,30 @@ class _SettingsFormState extends State<SettingsForm> {
   final _formKey = GlobalKey<FormState>();
   final List<String> sugars = ['0', '1', '2', '3', '4'];
   final textController = TextEditingController();
-  final passwordController = TextEditingController();
 
-  String? _currentName; // Make nullable
-  String? _currentSugars; // Make nullable
-  int _currentStrength = 100; // Initialize with a default value
+  String? _currentName;
+  String? _currentSugars;
+  int _currentStrength = 100;
 
   @override
   Widget build(BuildContext context) {
-
     final user = Provider.of<F_User?>(context);
-    return StreamBuilder(
-      stream: DatabaseService(uid: user?.uid??'').userData,
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        UserData userData = snapshot.data!;
-        if(snapshot.hasData){
+
+    return StreamBuilder<UserData>(
+      stream: DatabaseService(uid: user?.uid ?? '').userData,
+      builder: (BuildContext context, AsyncSnapshot<UserData> snapshot) {
+        if (snapshot.hasData) {
+          UserData userData = snapshot.data!;
+
+          // Set initial values from userData
+          _currentName = userData.name;
+          _currentSugars = userData.sugars;
+          _currentStrength = userData.strength;
+
+          // Ensure _currentStrength is within the valid range
+          if (_currentStrength < 100) _currentStrength = 100;
+          if (_currentStrength > 900) _currentStrength = 900;
+
           return Form(
             key: _formKey,
             child: Column(
@@ -44,9 +52,9 @@ class _SettingsFormState extends State<SettingsForm> {
                 MyTextField(
                   validator: (val) => val!.isEmpty ? "Please Enter a Name" : null,
                   onChanged: (val) => setState(() {
-                    _currentName = userData.name;
+                    _currentName = val;
                   }),
-                  controller: textController,
+                  controller: textController..text = _currentName ?? '',
                   hintText: 'Enter your Name',
                   obscureText: false,
                 ),
@@ -60,21 +68,21 @@ class _SettingsFormState extends State<SettingsForm> {
                       borderSide: BorderSide(color: Colors.grey.shade400),
                     ),
                   ),
-                  value: _currentSugars ?? userData.sugars, // Default to the first item
+                  value: _currentSugars,
                   items: sugars.map((sugar) {
                     return DropdownMenuItem(
-                        value: sugar, child: Text('$sugar sugars'));
+                      value: sugar,
+                      child: Text('$sugar sugars'),
+                    );
                   }).toList(),
                   onChanged: (val) => setState(() {
-                    _currentSugars = val!;
+                    _currentSugars = val;
                   }),
                 ),
-
-                // Slider for strength
                 Slider(
-                  value:( _currentStrength = userData.strength).toDouble(),
-                  activeColor: Colors.brown[userData.strength], // Use integer division
-                  inactiveColor: Colors.brown[userData.strength],
+                  value: _currentStrength.toDouble(),
+                  activeColor: Colors.brown[_currentStrength],
+                  inactiveColor: Colors.brown[_currentStrength],
                   min: 100,
                   max: 900,
                   divisions: 8,
@@ -82,19 +90,18 @@ class _SettingsFormState extends State<SettingsForm> {
                     _currentStrength = val.round();
                   }),
                 ),
-
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.pink[400],
                   ),
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                     await DatabaseService(uid: user?.uid??'').updateUserData(
-                     _currentSugars ?? userData.sugars,
-                     _currentName ?? userData.name,
-                     _currentStrength = userData.strength
-                     );
-                     Navigator.pop(context);
+                      await DatabaseService(uid: user?.uid ?? '').updateUserData(
+                        _currentSugars ?? userData.sugars,
+                        _currentName ?? userData.name,
+                        _currentStrength,
+                      );
+                      Navigator.pop(context);
                     }
                   },
                   child: const Text(
@@ -105,11 +112,9 @@ class _SettingsFormState extends State<SettingsForm> {
               ],
             ),
           );
-        }
-        else{
+        } else {
           return const Load();
         }
-
       },
     );
   }
